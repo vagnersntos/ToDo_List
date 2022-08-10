@@ -11,14 +11,12 @@
     <div class="card-body">
         <form id="add-form" #formulario="ngForm" (ngSubmit)="formulario.form.valid && save(formulario)" >
           <div class="form-group">
-              <label for="model">Tarefas</label>
-              <input type="text" [(ngModel)]="Tarefa.tarefa" id="model" name="model" #model="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': formulario.submitted && model.invalid }" placeholder="Digite a tarefa">
+              <input type="text" maxlength="30" [(ngModel)]="Tarefa.tarefa" id="model" name="model" #model="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': formulario.submitted && model.invalid }" placeholder="Digite a tarefa">
               <div *ngIf="formulario.submitted && model.invalid" class="invalid-feedback">
                   <div *ngIf="model.errors?.['required']">tarefa é obrigatório</div>
               </div>
             </div>
-            <button type="submit" class="btn btn-primary btn-add-car">Salvar</button>&nbsp;
-            <button type="reset" class="btn btn-secondary btn-add-car ml-1" (click)="cleanForm(formulario)">Limpar</button>
+            <button type="submit" class="btn btn-primary btn-add-car">Incluir</button>&nbsp;
         </form>
     </div>
 
@@ -30,6 +28,7 @@
       <table class="table">
           <thead>
             <tr>
+              <th scope="col"></th>
               <th scope="col">Id</th>
               <th scope="col">Tarefas</th>
               <th scope="col">Ações</th>
@@ -37,11 +36,12 @@
           </thead>
           <tbody>
             <tr *ngFor="let tarefa of Tarefas">
+              <td><input id="check" type="checkbox"></td>
               <td>{{tarefa.id}}</td>
               <td>{{tarefa.tarefa}}</td>
               <td>
                 <button type="button" class="btn btn-outline-warning btn-sm" (click)="edit(tarefa)">Editar</button>
-                <button type="button" class="btn btn-outline-danger btn-sm ml-1" (click)="delet(tarefa)">Deletar</button>
+                <button type="button" class="btn btn-outline-danger btn-sm ml-1" (click)="delete(tarefa)">Deletar</button>
               </td>
             </tr>
           </tbody>

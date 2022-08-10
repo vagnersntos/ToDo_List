@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
     this.get();
   }
 
-  // defini se um Tarefaro será criado ou atualizado
+  // defini se um Tarefa será criada ou atualizado
   save(form: NgForm) {
     if (this.Tarefa.id !== undefined) {
       this.TarefaService.update(this.Tarefa).subscribe(() => {
@@ -33,21 +33,21 @@ export class AppComponent implements OnInit {
     }
   }
 
-  // Chama o serviço para obtém todos os Tarefaros
+  // obtém todos os Tarefaa
   get() {
     this.TarefaService.get().subscribe((Tarefas: Tarefa[]) => {
       this.Tarefas = Tarefas;
     });
   }
 
-  // deleta um Tarefaro
-  delet(Tarefa: Tarefa) {
+  // deleta um Tarefa
+  delete(Tarefa: Tarefa) {
     this.TarefaService.delete(Tarefa).subscribe(() => {
       this.get();
     });
   }
 
-  // copia o Tarefaro para ser editado.
+  // copia o Tarefa para ser editado.
   edit(Tarefa: Tarefa) {
     this.Tarefa = { ...Tarefa };
   }
